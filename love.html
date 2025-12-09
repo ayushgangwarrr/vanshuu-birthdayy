@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy Birthday Vanshuu 🎀</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #ffd6f2 0%, #ffb6d9 30%, #f7a6ff 60%, #ffedf7 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #3c144b;
+      overflow-x: hidden;
+    }
+
+    .app-wrapper {
+      width: 100%;
+      max-width: 900px;
+      min-height: 90vh;
+      background: rgba(255, 255, 255, 0.87);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+      border-radius: 24px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .for-line {
+      position: absolute;
+      top: 14px;
+      left: 18px;
+      font-size: 12px;
+      background: rgba(255, 214, 242, 0.95);
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: #b0126f;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      z-index: 5;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      font-size: 18px;
+      opacity: 0.3;
+      animation: floatUp 12s linear infinite;
+      pointer-events: none;
+    }
+    .heart:nth-child(1) { left: 8%; bottom: -10%; animation-delay: 0s; }
+    .heart:nth-child(2) { left: 25%; bottom: -15%; animation-delay: 3s; }
+    .heart:nth-child(3) { left: 60%; bottom: -20%; animation-delay: 1.5s; }
+    .heart:nth-child(4) { left: 80%; bottom: -12%; animation-delay: 4s; }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 0.1; }
+      30% { opacity: 0.4; }
+      100% { transform: translateY(-140vh); opacity: 0; }
+    }
+
+    .page {
+      display: none;
+      height: 100%;
+      min-height: 82vh;
+      padding: 40px 16px 16px;
+      position: relative;
+    }
+
+    .page.active {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .heading-main {
+      text-align: center;
+      font-size: 26px;
+      font-weight: 600;
+      color: #c2185b;
+      margin-bottom: 10px;
+    }
+
+    .subtext {
+      text-align: center;
+      font-size: 14px;
+      color: #6b336f;
+      margin-bottom: 12px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #ff3f8f, #ff7cb3);
+      color: #fff;
+      font-weight: 500;
+      cursor: pointer;
+      font-size: 15px;
+      margin: 12px auto 0;
+      box-shadow: 0 10px 25px rgba(255, 63, 143, 0.4);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 30px rgba(255, 63, 143, 0.5);
+      filter: brightness(1.05);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+      box-shadow: 0 10px 22px rgba(255, 63, 143, 0.4);
+    }
+
+    .arrow {
+      font-size: 18px;
+    }
+
+    /* PAGE 1 – Intro Slider */
+    .intro-slider {
+      margin-top: 10px;
+      background: #ffe5f6;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 144, 209, 0.7);
+      padding: 20px 18px;
+      min-height: 230px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intro-slide {
+      position: absolute;
+      inset: 0;
+      padding: 24px 22px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    .intro-slide.active {
+      display: flex;
+    }
+
+    .intro-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #b0126f;
+      margin-bottom: 10px;
+    }
+
+    .intro-text {
+      font-size: 14px;
+      color: #5b1c5f;
+      line-height: 1.6;
+    }
+
+    .intro-dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .intro-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #f7b3da;
+      opacity: 0.5;
+      transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease;
+    }
+
+    .intro-dot.active {
+      opacity: 1;
+      background: #ff2f8a;
+      transform: scale(1.3);
+    }
+
+    /* Page 2 - Slider */
+    .slider-container {
+      margin-top: 4px;
+    }
+
+    .slider-frame {
+      position: relative;
+      width: 100%;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #ffe5f6;
+      border: 1px solid rgba(255, 144, 209, 0.7);
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .slide.active {
+      display: flex;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    .slide-media {
+      max-height: 70%;
+      max-width: 96%;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      margin-bottom: 10px;
+      background: #000;
+      object-fit: cover;
+    }
+
+    .slide-caption {
+      font-size: 14px;
+      color: #5b1c5f;
+      padding: 0 10px 4px;
+    }
+
+    .slider-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 12px;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-secondary {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: none;
+      background: #ffd6f2;
+      color: #b0126f;
+      font-size: 13px;
+      cursor: pointer;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .btn-secondary:hover {
+      background: #ffc2eb;
+      transform: translateY(-1px);
+    }
+
+    .progress-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #f7b3da;
+      opacity: 0.6;
+      transition: transform 0.15s ease, background 0.15s ease, opacity 0.15s ease;
+    }
+
+    .dot.active {
+      background: #ff2f8a;
+      opacity: 1;
+      transform: scale(1.3);
+    }
+
+    .slide-counter {
+      font-size: 12px;
+      color: #8b3b7a;
+      min-width: 60px;
+      text-align: right;
+    }
+
+    .btn-continue-disabled {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(4px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn-continue-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    /* Page 3 - Final message */
+    .final-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      padding: 18px 18px 20px;
+      border: 1px solid rgba(255, 168, 211, 0.8);
+      max-height: 72vh;
+      overflow-y: auto;
+    }
+
+    .final-heading {
+      font-size: 24px;
+      text-align: center;
+      color: #e01171;
+      margin-bottom: 12px;
+    }
+
+    .final-heading span {
+      font-size: 26px;
+    }
+
+    .final-text {
+      font-size: 14px;
+      color: #5b1c5f;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+
+    .signature {
+      margin-top: 14px;
+      text-align: right;
+      font-weight: 500;
+      color: #c2185b;
+    }
+
+    .tagline {
+      font-size: 11px;
+      text-align: center;
+      margin-top: 10px;
+      color: #9b4a90;
+    }
+
+    /* Music toggle button */
+    .music-toggle {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(255, 214, 242, 0.95);
+      color: #b0126f;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      z-index: 5;
+    }
+    .music-toggle span {
+      font-size: 14px;
+    }
+
+    /* Confetti canvas */
+    #confettiCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    /* Small screens */
+    @media (max-width: 600px) {
+      .app-wrapper {
+        padding: 16px;
+        border-radius: 20px;
+        min-height: 100vh;
+      }
+      .heading-main {
+        font-size: 22px;
+      }
+      .music-toggle {
+        top: 10px;
+        right: 10px;
+        font-size: 11px;
+      }
+      .for-line {
+        top: 42px;
+        left: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Confetti canvas -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Background music -->
+  <audio id="bgMusic" src="Dreaming-Under-The-Stars-MP3(chosic.com).mp3" loop></audio>
+
+  <div class="app-wrapper">
+    <div class="for-line">For Vanshika only 💌</div>
+
+    <!-- Music toggle button -->
+    <button id="musicToggle" class="music-toggle">
+      <span id="musicIcon">🔈</span> <span id="musicLabel">Music Off</span>
+    </button>
+
+    <!-- Floating hearts background elements -->
+    <div class="heart">💗</div>
+    <div class="heart">💖</div>
+    <div class="heart">💘</div>
+    <div class="heart">💕</div>
+
+    <!-- PAGE 1: 3 AUTO-SLIDES -->
+    <section id="page1" class="page active">
+      <h1 class="heading-main">A Small Journey of You in My Life…</h1>
+      <p class="subtext">
+         ✨
+      </p>
+
+      <div class="intro-slider">
+        <div class="intro-slide active" data-index="0">
+          <div class="intro-title">The day I met you 💫</div>
+          <div class="intro-text">
+            When I first saw you, everything stopped — it felt like the whole world faded, and it was just you, only you. My heartbeat began to race like it was trying to say your name with every beat
+            
+          </div>
+        </div>
+
+        <div class="intro-slide" data-index="1">
+          <div class="intro-title">The day I realised you’re special 💛</div>
+          <div class="intro-text">
+            The day I realised you are special, everything changed. After that day, I don’t know when it happened, but you became a part of me. In every corner of my heart there’s a little essence of you, a thought of you — every single second.
+          </div>
+        </div>
+
+        <div class="intro-slide" data-index="2">
+          <div class="intro-title">Today, the most special day 🎂</div>
+          <div class="intro-text">
+            Today isn’t just another date on the calendar — it’s the day the world was gifted with you. 💖
+          </div>
+        </div>
+      </div>
+
+      <div class="intro-dots">
+        <div class="intro-dot active" data-index="0"></div>
+        <div class="intro-dot" data-index="1"></div>
+        <div class="intro-dot" data-index="2"></div>
+      </div>
+
+      <button class="btn-primary" onclick="showPage(2, true)">
+        Continue to our memories <span class="arrow">➜</span>
+      </button>
+    </section>
+
+    <!-- PAGE 2: Memories Slider (4 photos + 2 videos) -->
+    <section id="page2" class="page">
+      <h1 class="heading-main">Our Memories 🌸</h1>
+      <p class="subtext">
+         💫
+      </p>
+
+      <div class="slider-container">
+        <div class="slider-frame" id="sliderFrame">
+          <!-- Slides -->
+          <div class="slide active" data-index="0">
+            <img src="IMG_0113.JPG" alt="Photo 1" class="slide-media" />
+            <div class="slide-caption">
+              Some moments are normal… until they become memories. 🌙
+            </div>
+          </div>
+
+          <div class="slide" data-index="1">
+            <img src="IMG_0068.JPG" alt="Photo 2" class="slide-media" />
+            <div class="slide-caption">
+              A smile like yours can fix days, you know that? 😊💛
+            </div>
+          </div>
+
+          <div class="slide" data-index="2">
+            <img src="IMG_0117.JPG" alt="Photo 3" class="slide-media" />
+            <div class="slide-caption">
+              I still remember this day… it still feels warm even now. ✨
+            </div>
+          </div>
+
+          <div class="slide" data-index="3">
+            <img src="IMG_0193.JPG" alt="Photo 4" class="slide-media" />
+            <div class="slide-caption">
+              Out of everything, this picture makes my heart the happiest. 💖
+            </div>
+          </div>
+
+          <div class="slide" data-index="4">
+            <video src="4CEF7BBA-1B88-48EF-BA16-1574CA154102.MP4" class="slide-media" controls></video>
+            <div class="slide-caption">
+                Wish I could freeze this moment forever. 🌙
+            </div>
+          </div>
+
+          
+        </div>
+
+        <div class="slider-controls">
+          <button class="btn-secondary" id="prevBtn">
+            ← Back
+          </button>
+
+          <div class="progress-dots" id="dotsContainer">
+            <!-- Dots created by JS -->
+          </div>
+
+          <div class="slide-counter" id="slideCounter">
+            1 / 6
+          </div>
+        </div>
+      </div>
+
+      <button id="continueBtn" class="btn-primary btn-continue-disabled" onclick="showPage(3)">
+        Continue to your birthday surprise 🎁
+      </button>
+    </section>
+
+    <!-- PAGE 3: Final Happy Birthday Message -->
+    <section id="page3" class="page">
+      <h1 class="final-heading">
+        <span>❤️ Happy Birthday, Vanshuu ❤️</span>
+      </h1>
+
+      <div class="final-card">
+        <div class="final-text">
+Vanshika, today isn’t just another date on the calendar for me. 
+It’s the day someone incredibly special came into this world, and somehow, in this huge, messy universe, our paths crossed. 💌  
+
+I don’t know if you truly realise it or not, but you have this quiet magic in you. The way you smile, the way you talk, the way you care about people… it all feels different. You don’t even try, yet you make normal moments feel a little softer, a little warmer, a little more beautiful.  
+
+There are days when life feels heavy, confusing, or tiring — but then there are people like you, who make it all feel lighter just by being exactly who they are. You might see yourself as “normal”, but for me, you’re someone I genuinely admire, someone I feel grateful for, someone who has a place in my heart in a very real way. 💖  
+
+VANSHUU...Thank you for the laughter,  for the little moments that probably felt casual to you, but stayed with me for so long. Thank you for just existing the way you do. You have no idea how many times your name, your smile, your memories have unknowingly made my day better.  
+
+On your birthday, I don’t just wish you cakes, photos, and messages.  
+I wish you peace on the days your heart feels heavy.  
+I wish you strength on the days you doubt yourself.  
+And I wish you the kind of happiness that doesn’t depend on people, situations, or time — a soft, permanent kind of happiness that always stays with you. ✨  
+
+I hope life gives you everything you silently pray for… the dreams you keep in your heart, the love you truly deserve, and the warmth you never have to question. And no matter where life takes you, or how far our paths go, a part of me will always be silently cheering for you, proud of you, and grateful that I got to know you as you.  
+
+With all my heart,  
+Ayush 💙
+        </div>
+
+        <div class="signature">
+          — Ayush 💙
+        </div>
+      </div>
+
+      <p class="tagline">
+        Made this small website… just for you Vanshuu, on your day. 🎀
+      </p>
+    </section>
+  </div>
+
+  <script>
+    // ========== MUSIC LOGIC ==========
+    const bgMusic = document.getElementById("bgMusic");
+    const musicToggle = document.getElementById("musicToggle");
+    const musicIcon = document.getElementById("musicIcon");
+    const musicLabel = document.getElementById("musicLabel");
+    let musicOn = false;
+
+    function updateMusicToggleUI() {
+      if (musicOn) {
+        musicIcon.textContent = "🔊";
+        musicLabel.textContent = "Music On";
+      } else {
+        musicIcon.textContent = "🔈";
+        musicLabel.textContent = "Music Off";
+      }
+    }
+
+    function playMusic() {
+      if (!bgMusic) return;
+      bgMusic.play().then(() => {
+        musicOn = true;
+        updateMusicToggleUI();
+      }).catch(() => {
+        // Autoplay blocked, ignore
+      });
+    }
+
+    function pauseMusic() {
+      if (!bgMusic) return;
+      bgMusic.pause();
+      musicOn = false;
+      updateMusicToggleUI();
+    }
+
+    musicToggle.addEventListener("click", () => {
+      if (musicOn) {
+        pauseMusic();
+      } else {
+        playMusic();
+      }
+    });
+
+    // ========== PAGE SWITCHING ==========
+    function showPage(pageNumber, startMusic = false) {
+      const pages = document.querySelectorAll(".page");
+      pages.forEach(p => p.classList.remove("active"));
+      const target = document.getElementById("page" + pageNumber);
+      if (target) {
+        target.classList.add("active");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      if (startMusic) {
+        playMusic();
+      }
+
+      if (pageNumber === 3) {
+        startConfetti();
+      }
+    }
+
+    // ========== PAGE 1 INTRO AUTO SLIDER ==========
+    const introSlides = document.querySelectorAll(".intro-slide");
+    const introDots = document.querySelectorAll(".intro-dot");
+    let currentIntroIndex = 0;
+
+    function updateIntroSliderUI() {
+      introSlides.forEach((slide, idx) => {
+        slide.classList.toggle("active", idx === currentIntroIndex);
+      });
+      introDots.forEach((dot, idx) => {
+        dot.classList.toggle("active", idx === currentIntroIndex);
+      });
+    }
+
+    introDots.forEach(dot => {
+      dot.addEventListener("click", () => {
+        const idx = parseInt(dot.dataset.index, 10);
+        currentIntroIndex = idx;
+        updateIntroSliderUI();
+      });
+    });
+
+    // Auto slide every 2 seconds, stop on last
+    let introInterval = setInterval(() => {
+      if (currentIntroIndex < introSlides.length - 1) {
+        currentIntroIndex++;
+        updateIntroSliderUI();
+      } else {
+        // clearInterval(introInterval);
+        currentIntroIndex=1;
+      }
+    }, 3000);
+
+    // ========== PAGE 2 – MEMORIES SLIDER ==========
+    const slides = document.querySelectorAll(".slide");
+    const totalSlides = slides.length;
+    let currentSlide = 0;
+
+    const prevBtn = document.getElementById("prevBtn");
+    const dotsContainer = document.getElementById("dotsContainer");
+    const slideCounter = document.getElementById("slideCounter");
+    const continueBtn = document.getElementById("continueBtn");
+    const sliderFrame = document.getElementById("sliderFrame");
+
+    // Create dots
+    for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement("div");
+      dot.classList.add("dot");
+      if (i === 0) dot.classList.add("active");
+      dot.dataset.index = i;
+      dot.addEventListener("click", () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    }
+
+    const dots = document.querySelectorAll(".dot");
+
+    function updateSliderUI() {
+      slides.forEach((slide, index) => {
+        slide.classList.toggle("active", index === currentSlide);
+      });
+
+      dots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === currentSlide);
+      });
+
+      slideCounter.textContent = (currentSlide + 1) + " / " + totalSlides;
+
+      prevBtn.disabled = currentSlide === 0;
+      prevBtn.style.opacity = currentSlide === 0 ? 0.6 : 1;
+
+      if (currentSlide === totalSlides - 1) {
+        continueBtn.classList.remove("btn-continue-disabled");
+        continueBtn.classList.add("btn-continue-visible");
+      } else {
+        continueBtn.classList.add("btn-continue-disabled");
+        continueBtn.classList.remove("btn-continue-visible");
+      }
+    }
+
+    function goToSlide(index) {
+      if (index < 0 || index >= totalSlides) return;
+      currentSlide = index;
+      updateSliderUI();
+    }
+
+    prevBtn.addEventListener("click", () => {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateSliderUI();
+      }
+    });
+
+    // Auto slide every 3 seconds, stop on last slide
+    let memoriesInterval = setInterval(() => {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateSliderUI();
+      } else {
+        clearInterval(memoriesInterval);
+      }
+    }, 4000);
+
+    // Clicking frame to go next (ignoring video & buttons)
+    sliderFrame.addEventListener("click", (e) => {
+      if (
+        e.target.tagName.toLowerCase() === "video" ||
+        e.target.tagName.toLowerCase() === "button" ||
+        e.target.classList.contains("btn-secondary")
+      ) return;
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateSliderUI();
+      }
+    });
+
+    updateSliderUI();
+
+    // ========== CONFETTI ==========
+    const confettiCanvas = document.getElementById("confettiCanvas");
+    const ctx = confettiCanvas.getContext("2d");
+    let confettiPieces = [];
+    let confettiActive = false;
+    let confettiEndTime = 0;
+
+    function resizeCanvas() {
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    function createConfettiPiece() {
+      const colors = ["#ff4f9a", "#ffb6e1", "#ffd54f", "#81d4fa", "#b39ddb"];
+      return {
+        x: Math.random() * confettiCanvas.width,
+        y: -10,
+        size: Math.random() * 8 + 4,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        speedY: Math.random() * 3 + 2,
+        speedX: (Math.random() - 0.5) * 2,
+        rotation: Math.random() * 2 * Math.PI,
+        rotationSpeed: (Math.random() - 0.5) * 0.2
+      };
+    }
+
+    function startConfetti() {
+      confettiPieces = [];
+      for (let i = 0; i < 200; i++) {
+        confettiPieces.push(createConfettiPiece());
+      }
+      confettiActive = true;
+      confettiEndTime = Date.now() + 5000;
+      requestAnimationFrame(updateConfetti);
+    }
+
+    function updateConfetti() {
+      if (!confettiActive) return;
+
+      const now = Date.now();
+      if (now > confettiEndTime) {
+        confettiActive = false;
+        ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+        return;
+      }
+
+      ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+
+      confettiPieces.forEach(p => {
+        p.x += p.speedX;
+        p.y += p.speedY;
+        p.rotation += p.rotationSpeed;
+
+        if (p.y > confettiCanvas.height + 10) {
+          p.y = -10;
+          p.x = Math.random() * confettiCanvas.width;
+        }
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+        ctx.restore();
+      });
+
+      requestAnimationFrame(updateConfetti);
+    }
+  </script>
+</body>
+</html>

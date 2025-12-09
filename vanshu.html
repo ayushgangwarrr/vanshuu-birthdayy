@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy Birthday Vanshuu 🎀</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Font (optional) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #ffd6f2 0%, #ffb6d9 30%, #f7a6ff 60%, #ffedf7 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #3c144b;
+    }
+
+    .app-wrapper {
+      width: 100%;
+      max-width: 900px;
+      min-height: 90vh;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+      border-radius: 24px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      font-size: 18px;
+      opacity: 0.3;
+      animation: floatUp 12s linear infinite;
+      pointer-events: none;
+    }
+    .heart:nth-child(1) { left: 8%; bottom: -10%; animation-delay: 0s; }
+    .heart:nth-child(2) { left: 25%; bottom: -15%; animation-delay: 3s; }
+    .heart:nth-child(3) { left: 60%; bottom: -20%; animation-delay: 1.5s; }
+    .heart:nth-child(4) { left: 80%; bottom: -12%; animation-delay: 4s; }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 0.1; }
+      30% { opacity: 0.4; }
+      100% { transform: translateY(-140vh); opacity: 0; }
+    }
+
+    .page {
+      display: none;
+      height: 100%;
+      min-height: 82vh;
+      padding: 16px;
+      position: relative;
+    }
+
+    .page.active {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .heading-main {
+      text-align: center;
+      font-size: 26px;
+      font-weight: 600;
+      color: #c2185b;
+      margin-bottom: 10px;
+    }
+
+    .subtext {
+      text-align: center;
+      font-size: 14px;
+      color: #6b336f;
+      margin-bottom: 12px;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .timeline-item {
+      background: #ffeafa;
+      border-radius: 16px;
+      padding: 14px 16px;
+      border: 1px solid rgba(255, 144, 209, 0.7);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timeline-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      background: #ff4f9a;
+      position: absolute;
+      left: 14px;
+      top: 16px;
+      box-shadow: 0 0 0 4px rgba(255, 154, 202, 0.35);
+    }
+
+    .timeline-title {
+      font-weight: 600;
+      margin-left: 26px;
+      margin-bottom: 6px;
+      color: #b0126f;
+      font-size: 15px;
+    }
+
+    .timeline-text {
+      font-size: 14px;
+      color: #5b1c5f;
+      margin-left: 26px;
+      line-height: 1.4;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #ff3f8f, #ff7cb3);
+      color: #fff;
+      font-weight: 500;
+      cursor: pointer;
+      font-size: 15px;
+      margin: 12px auto 0;
+      box-shadow: 0 10px 25px rgba(255, 63, 143, 0.4);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 30px rgba(255, 63, 143, 0.5);
+      filter: brightness(1.05);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+      box-shadow: 0 10px 22px rgba(255, 63, 143, 0.4);
+    }
+
+    .arrow {
+      font-size: 18px;
+    }
+
+    /* Page 2 - Slider */
+    .slider-container {
+      margin-top: 4px;
+    }
+
+    .slider-frame {
+      position: relative;
+      width: 100%;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #ffe5f6;
+      border: 1px solid rgba(255, 144, 209, 0.7);
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .slide.active {
+      display: flex;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    .slide-media {
+      max-height: 70%;
+      max-width: 96%;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      margin-bottom: 10px;
+      background: #000;
+      object-fit: cover;
+    }
+
+    .slide-caption {
+      font-size: 14px;
+      color: #5b1c5f;
+      padding: 0 10px 4px;
+    }
+
+    .slider-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 12px;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-secondary {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: none;
+      background: #ffd6f2;
+      color: #b0126f;
+      font-size: 13px;
+      cursor: pointer;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .btn-secondary:hover {
+      background: #ffc2eb;
+      transform: translateY(-1px);
+    }
+
+    .progress-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #f7b3da;
+      opacity: 0.6;
+      transition: transform 0.15s ease, background 0.15s ease, opacity 0.15s ease;
+    }
+
+    .dot.active {
+      background: #ff2f8a;
+      opacity: 1;
+      transform: scale(1.3);
+    }
+
+    .slide-counter {
+      font-size: 12px;
+      color: #8b3b7a;
+      min-width: 60px;
+      text-align: right;
+    }
+
+    .btn-continue-disabled {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(4px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn-continue-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    /* Page 3 - Final message */
+    .final-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      padding: 18px 18px 20px;
+      border: 1px solid rgba(255, 168, 211, 0.8);
+      max-height: 72vh;
+      overflow-y: auto;
+    }
+
+    .final-heading {
+      font-size: 24px;
+      text-align: center;
+      color: #e01171;
+      margin-bottom: 12px;
+    }
+
+    .final-heading span {
+      font-size: 26px;
+    }
+
+    .final-text {
+      font-size: 14px;
+      color: #5b1c5f;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+
+    .signature {
+      margin-top: 14px;
+      text-align: right;
+      font-weight: 500;
+      color: #c2185b;
+    }
+
+    .tagline {
+      font-size: 11px;
+      text-align: center;
+      margin-top: 10px;
+      color: #9b4a90;
+    }
+
+    /* Small screens */
+    @media (max-width: 600px) {
+      .app-wrapper {
+        padding: 16px;
+        border-radius: 20px;
+        min-height: 100vh;
+      }
+      .heading-main {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <!-- Floating hearts background elements -->
+    <div class="heart">💗</div>
+    <div class="heart">💖</div>
+    <div class="heart">💘</div>
+    <div class="heart">💕</div>
+
+    <!-- PAGE 1: Timeline of Feelings -->
+    <section id="page1" class="page active">
+      <h1 class="heading-main">A Small Journey of You in My Life…</h1>
+      <p class="subtext">
+        Scroll through these tiny moments… and then we’ll move to your surprise. ✨
+      </p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-title">📍 The Day I Saw You First</div>
+          <div class="timeline-text">
+            Shayad tumhe yaad bhi na ho… par mujhe woh din bohot clearly yaad hai.
+            Us din bas ek cheez samajh aayi thi —
+            “yeh ladki alag hai…”
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-title">📍 The Day I Realised You’re Special</div>
+          <div class="timeline-text">
+            Dheere–dheere baatein badhi, hasi mazak hua, aur pata bhi nahi chala
+            kab tum normal se “bahut zyada important” ban gayi.
+            Tab samjha – tum sirf ek dost nahi ho Vanshuu…
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-title">📍 And Today…</div>
+          <div class="timeline-text">
+            Aaj ka din sirf calendar ka ek date nahi hai,
+            yeh woh din hai jab duniya ko tum mili thi.
+            Isliye maine socha, kya sirf ek wish kaafi hai? Nahi.
+            Isliye yeh chhota sa website sirf tumhare liye… 💛
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-primary" onclick="showPage(2)">
+        Continue to the next part <span class="arrow">➜</span>
+      </button>
+    </section>
+
+    <!-- PAGE 2: Slider with Photos & Videos -->
+    <section id="page2" class="page">
+      <h1 class="heading-main">Our Moments 🌸</h1>
+      <p class="subtext">
+        4 photos + 3 videos, ek ek karke — bas hum dono, aur kuch yaadein. 💫
+      </p>
+
+      <div class="slider-container">
+        <div class="slider-frame">
+          <!-- Slides -->
+          <div class="slide active" data-index="0">
+            <img src="photo1.jpg" alt="Photo 1" class="slide-media" />
+            <div class="slide-caption">
+              Some moments are normal… until they become memories. 🌙
+            </div>
+          </div>
+
+          <div class="slide" data-index="1">
+            <img src="photo2.jpg" alt="Photo 2" class="slide-media" />
+            <div class="slide-caption">
+              A smile like yours can fix days, you know that? 😊💛
+            </div>
+          </div>
+
+          <div class="slide" data-index="2">
+            <img src="photo3.jpg" alt="Photo 3" class="slide-media" />
+            <div class="slide-caption">
+              I still remember this day… it still feels warm even now. ✨
+            </div>
+          </div>
+
+          <div class="slide" data-index="3">
+            <img src="photo4.jpg" alt="Photo 4" class="slide-media" />
+            <div class="slide-caption">
+              Out of everything, this picture makes my heart the happiest. 💖
+            </div>
+          </div>
+
+          <div class="slide" data-index="4">
+            <video src="video1.mp4" class="slide-media" controls></video>
+            <div class="slide-caption">
+              Videos hit different… like we’re reliving it again. 🎥
+            </div>
+          </div>
+
+          <div class="slide" data-index="5">
+            <video src="video2.mp4" class="slide-media" controls></video>
+            <div class="slide-caption">
+              Look at us — so raw, so real, so beautiful. 🫶
+            </div>
+          </div>
+
+          <div class="slide" data-index="6">
+            <video src="video3.mp4" class="slide-media" controls></video>
+            <div class="slide-caption">
+              Wish I could freeze this moment forever. 🌙
+            </div>
+          </div>
+        </div>
+
+        <div class="slider-controls">
+          <button class="btn-secondary" id="prevBtn">
+            ← Back
+          </button>
+
+          <div class="progress-dots" id="dotsContainer">
+            <!-- Dots created by JS -->
+          </div>
+
+          <div class="slide-counter" id="slideCounter">
+            1 / 7
+          </div>
+        </div>
+      </div>
+
+      <button id="continueBtn" class="btn-primary btn-continue-disabled" onclick="showPage(3)">
+        Continue to your birthday surprise 🎁
+      </button>
+    </section>
+
+    <!-- PAGE 3: Final Happy Birthday Message -->
+    <section id="page3" class="page">
+      <h1 class="final-heading">
+        <span>❤️ Happy Birthday, Vanshuu ❤️</span>
+      </h1>
+
+      <div class="final-card">
+        <div class="final-text">
+Vanshika, today isn’t just another date on the calendar for me. 
+It’s the day someone incredibly special came into this world, and somehow, in this huge, messy universe, our paths crossed. 💌  
+
+I don’t know if you truly realise it or not, but you have this quiet magic in you. The way you smile, the way you talk, the way you care about people… it all feels different. You don’t even try, yet you make normal moments feel a little softer, a little warmer, a little more beautiful.  
+
+There are days when life feels heavy, confusing, or tiring — but then there are people like you, who make it all feel lighter just by being exactly who they are. You might see yourself as “normal”, but for me, you’re someone I genuinely admire, someone I feel grateful for, someone who has a place in my heart in a very real way. 💖  
+
+Thank you for the laughter, for the small conversations, for the little moments that probably felt casual to you, but stayed with me for so long. Thank you for just existing the way you do. You have no idea how many times your name, your smile, your memories have unknowingly made my day better.  
+
+On your birthday, I don’t just wish you cakes, photos, and messages.  
+I wish you peace on the days your heart feels heavy.  
+I wish you strength on the days you doubt yourself.  
+And I wish you the kind of happiness that doesn’t depend on people, situations, or time — a soft, permanent kind of happiness that always stays with you. ✨  
+
+I hope life gives you everything you silently pray for… the dreams you keep in your heart, the love you truly deserve, and the warmth you never have to question. And no matter where life takes you, or how far our paths go, a part of me will always be silently cheering for you, proud of you, and grateful that I got to know you as you.  
+
+With all my heart,  
+Ayush 💙
+        </div>
+
+        <div class="signature">
+          — Ayush 💙
+        </div>
+      </div>
+
+      <p class="tagline">
+        Made this small website… just for you, on your day. 🎀
+      </p>
+    </section>
+  </div>
+
+  <script>
+    // PAGE SWITCHING
+    function showPage(pageNumber) {
+      const pages = document.querySelectorAll(".page");
+      pages.forEach(p => p.classList.remove("active"));
+      const target = document.getElementById("page" + pageNumber);
+      if (target) {
+        target.classList.add("active");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+
+    // SLIDER LOGIC
+    const slides = document.querySelectorAll(".slide");
+    const totalSlides = slides.length;
+    let currentSlide = 0;
+
+    const prevBtn = document.getElementById("prevBtn");
+    const dotsContainer = document.getElementById("dotsContainer");
+    const slideCounter = document.getElementById("slideCounter");
+    const continueBtn = document.getElementById("continueBtn");
+
+    // Create dots
+    for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement("div");
+      dot.classList.add("dot");
+      if (i === 0) dot.classList.add("active");
+      dot.dataset.index = i;
+      dot.addEventListener("click", () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    }
+
+    const dots = document.querySelectorAll(".dot");
+
+    function updateSliderUI() {
+      slides.forEach((slide, index) => {
+        slide.classList.toggle("active", index === currentSlide);
+      });
+
+      dots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === currentSlide);
+      });
+
+      slideCounter.textContent = (currentSlide + 1) + " / " + totalSlides;
+
+      // Disable "Back" on first slide
+      prevBtn.disabled = currentSlide === 0;
+      prevBtn.style.opacity = currentSlide === 0 ? 0.6 : 1;
+
+      // Show "Continue" button only on last slide
+      if (currentSlide === totalSlides - 1) {
+        continueBtn.classList.remove("btn-continue-disabled");
+        continueBtn.classList.add("btn-continue-visible");
+      } else {
+        continueBtn.classList.add("btn-continue-disabled");
+        continueBtn.classList.remove("btn-continue-visible");
+      }
+    }
+
+    function goToSlide(index) {
+      if (index < 0 || index >= totalSlides) return;
+      currentSlide = index;
+      updateSliderUI();
+    }
+
+    prevBtn.addEventListener("click", () => {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateSliderUI();
+      }
+    });
+
+    // Clicking on the frame to go next (optional)
+    document.querySelector(".slider-frame").addEventListener("click", (e) => {
+      // Avoid next if clicking on controls (like video buttons)
+      if (e.target.tagName.toLowerCase() === "video" || e.target.tagName.toLowerCase() === "button") return;
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateSliderUI();
+      }
+    });
+
+    // Init UI
+    updateSliderUI();
+  </script>
+</body>
+</html>
